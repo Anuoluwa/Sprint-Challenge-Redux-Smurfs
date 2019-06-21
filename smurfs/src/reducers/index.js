@@ -39,7 +39,13 @@ export const SmurfsReducer = (state = initialState, action) => {
       return { ...state, smurfs: action.payload, fetchingSmurfs: false };
     case types.FETCH_FAILURE:
       return { ...state, fetchingSmurfs: false };
+    case types.ADDING_SMURFS:
+      return { ...state, addingSmurf: true };
+    case types.ADDING_SUCCESS:
+      return { ...state, smurfs: action.payload, addingSmurf: false };
+    case types.ADDING_FAILURE:
+      return { ...state, addingSmurf: false };
     default:
-      return;
+      return state;
   }
 };
