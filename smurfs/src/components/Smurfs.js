@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSmurfs } from '../actions';
+import { fetchSmurfs, deleteSmurf } from '../actions';
 import Smurf from './Smurf';
 export class Smurfs extends Component {
 
     componentDidMount(){
         this.props.fetchSmurfs();
+    }
+
+    handlerDelete = (event,id) =>{
+        event.preventDefault();
+        this.props.deleteSmurf(id);
     }
     render() {
         console.log('smurfs comp',this.props.fetchSmurfs())
@@ -16,7 +21,7 @@ export class Smurfs extends Component {
             <div>
                 {
                     this.props.smurfsList.map(smurf => {
-                        return <Smurf key={smurf.id} data={smurf}/>
+                        return <Smurf key={smurf.id} data={smurf} handlerDelete={this.handlerDelete}/>
                     })
                 }
                 
@@ -31,4 +36,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, {fetchSmurfs})(Smurfs);
+export default connect(mapStateToProps, {fetchSmurfs, deleteSmurf})(Smurfs);

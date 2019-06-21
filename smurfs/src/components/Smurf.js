@@ -6,6 +6,8 @@ const Smurf = (props) => {
             name: {props.data.name}
             Age: {props.data.age}
             Height: {props.data.height}
+            <br/>
+            <button onClick={(event)=>{props.handlerDelete(event,props.data.id)}}>Delete</button>
         </div>
     )
 }
